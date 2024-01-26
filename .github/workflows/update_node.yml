@@ -35,6 +35,7 @@ jobs:
         git commit -m "Commit v2.txt"
         git push
 
+    # cf r2 put object
     - uses: ryand56/r2-upload-action@latest
       name: put object cf R2
       with:
