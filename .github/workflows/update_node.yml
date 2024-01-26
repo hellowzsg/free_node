@@ -18,6 +18,8 @@ jobs:
 
     - name: run cmd
       run: |
+        rm -f v2.txt
+        rm -rf ./r2
         cp main main_tmp
         chmod +x main_tmp
         ./main_tmp cfg.json
