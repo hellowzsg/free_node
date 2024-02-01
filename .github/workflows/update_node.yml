@@ -63,6 +63,7 @@ jobs:
             if [ -f "$file" ]; then
                 # 将文件内容进行 Base64 编码
                 base64 -w 0 "$file" > temp.txt && mv temp.txt "$file"
+                cat "$file"
             fi
         done
 
