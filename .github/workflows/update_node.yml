@@ -1,9 +1,9 @@
 name: 更新订阅
 
 on:
-  # push:
-    # branches:
-    #   - main
+  push:
+    branches:
+      - main
   schedule:
     - cron: '*/10 * * * *'
 
@@ -59,11 +59,10 @@ jobs:
       run: |
         mkdir r2
         cp  -r  ./out/* ./r2 
-        for file in "r2/*"; do
+        for file in "$(pwd)"/r2/*; do
             if [ -f "$file" ]; then
                 # 将文件内容进行 Base64 编码
-                base64 -w 0 "$file" > temp.txt && mv temp.txt "$file"
-                cat "$file"
+                base64 -w 0 "$file" > temp.txt && mv temp.txt "$file" && cat "$file" && echo
             fi
         done
 
