@@ -58,7 +58,7 @@ jobs:
     - name: prepare r2 dir
       run: |
         mkdir r2
-        cp v2.txt ./r2/       
+        cp  -r  ./out/* ./r2      
 
     # cf r2 put object
     - uses: ryand56/r2-upload-action@latest
