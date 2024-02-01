@@ -1,7 +1,10 @@
 {
-    "subs": [
-      "https://raw.githubusercontent.com/freefq/free/master/v2",
-      "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2"
-    ],
-    "output": "./v2.txt"
+  "subs": [
+    "https://raw.githubusercontent.com/freefq/free/master/v2",
+    "https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2"
+  ],
+  "output": {
+    "vmess": "./out/v2.txt",
+    "ss": "./out/ss.txt"
   }
+}
