@@ -1,4 +1,4 @@
-name: 更新节点
+name: 更新订阅
 
 on:
   # push:
@@ -58,7 +58,13 @@ jobs:
     - name: prepare r2 dir
       run: |
         mkdir r2
-        cp  -r  ./out/* ./r2      
+        cp  -r  ./out/* ./r2 
+        for file in "r2/*"; do
+            if [ -f "$file" ]; then
+                # 将文件内容进行 Base64 编码
+                base64 -w 0 "$file" > temp.txt && mv temp.txt "$file"
+            fi
+        done
 
     # cf r2 put object
     - uses: ryand56/r2-upload-action@latest
