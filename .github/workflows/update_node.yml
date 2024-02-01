@@ -26,28 +26,21 @@ jobs:
         rm main_tmp
 
 
-    - name: Check for changes
+    - name: Check for local changes
       uses: actions/github-script@v5
       with:
         script: |
-          const { context, github } = require('@actions/github');
-
-          async function run() {
-            const filesChanged = await github.repos.compareCommits({
-              base: context.payload.before,
-              head: context.payload.after,
-              owner: context.repo.owner,
-              repo: context.repo.repo
-            });
-
-            if (filesChanged.data.files.length === 0) {
-              console.log("No files changed. Cancelling workflow.");
-              //process.exit(1); // Exit with non-zero code to indicate failure
-            } else {
-              console.log("Files changed. Proceeding with workflow.");
-            }
+          const { execSync } = require('child_process');
+          
+          // Check for local changes
+          const output = execSync('git status --porcelain');
+          
+          if (output.toString().trim() === '') {
+            console.log('No local changes detected. Cancelling workflow.');
+            process.exit(78); // Exit with a neutral status code to cancel the workflow
+          } else {
+            console.log('Local changes detected. Workflow will continue.');
           }
-          run();
 
 
     # - uses: actions/checkout@v2
